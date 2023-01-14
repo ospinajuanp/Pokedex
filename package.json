@@ -1,0 +1,26 @@
+{
+  "name": "pokemongame",
+  "version": "1.0.0",
+  "description": "Consumo de Api y juego de peleas basico",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ospinajuanp/PokemonGame.git"
+  },
+  "keywords": [
+    "Pokemon"
+  ],
+  "author": "ospinajuanp",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ospinajuanp/PokemonGame/issues"
+  },
+  "homepage": "https://github.com/ospinajuanp/PokemonGame#readme",
+  "dependencies": {
+    "normalize.css": "^8.0.1",
+    "sass": "^1.57.1"
+  }
+}
