@@ -1,0 +1,50 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container__header {
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: red;
+    margin: 0 auto;
+    
+    &--tittle {
+        width: 90%;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: white;
+
+    }
+
+    &--select {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        background-color: aqua;
+
+        &-generation {
+        
+        }
+        
+        &-type {
+        
+        }
+    }
+    
+    
+    
+    
+    &--tittle-h1 {
+    
+    }
+}
+.generation-pokemon{
+    width: 1em;
+}
