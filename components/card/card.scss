@@ -1,0 +1,30 @@
+$primary-color:#1C315E;
+$secondary-color:#227C70;
+$tertiary-color:#88A47C;
+$quaternary-color:#E6E2C3;
+$dar-color:#000;
+$light-color:#fff;
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.card {
+    &__buttom {
+    }
+    &__buttom-button {
+    }
+    &__up {
+    }
+    &__up-img {
+      &--style {
+      }
+    }
+    &__up-name {
+    }
+    &__up-view {
+    }
+  }
+  
