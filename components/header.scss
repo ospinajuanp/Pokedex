@@ -1,7 +1,22 @@
+$primary-color:#1C315E;
+$secondary-color:#227C70;
+$tertiary-color:#88A47C;
+$quaternary-color:#E6E2C3;
+$dar-color:#000;
+$light-color:#fff;
+
 *{
+    font-size: 100%;
+    font-weight: normal;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    color: $quaternary-color;
+    background-color: $primary-color;
+}
+body{
+    width: 100%;
+    height: 100vh;
 }
 
 .container__header {
@@ -11,30 +26,45 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: red;
-    margin: 0 auto;
+    margin: 0 auto 8px;
+    background-color: $primary-color;
     
     &--tittle {
         width: 90%;
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        background-color: white;
+        margin: 8px 0;
+        border: 1px solid $tertiary-color;
+        
+        &-h1{
+            text-align: center;
+            font-size: 1.3em;
+        }
 
     }
 
     &--select {
-        width: 100%;
+        width: 90%;
         display: flex;
         flex-direction: row;
-        background-color: aqua;
+        justify-content: space-evenly;
+        border: 1px solid $tertiary-color;
+        padding: .5em 0;
 
-        &-generation {
-        
+        &-generation{
+            width: 50%;
+            
+            select{
+                width: 60%;
+            }
         }
-        
-        &-type {
-        
+        &-type{
+            width: 40%;
+            display: flex;
+            flex-direction: row;
+            justify-content: end;
+            gap: 1em;
         }
     }
     
@@ -42,9 +72,10 @@
     
     
     &--tittle-h1 {
-    
+        -webkit-text-stroke: 1px $secondary-color;
     }
 }
-.generation-pokemon{
-    width: 1em;
+select{
+    min-width: 5em;
+    max-width: 10em;
 }
