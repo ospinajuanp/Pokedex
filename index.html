@@ -4,12 +4,45 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="./node_modules/normalize.css/normalize.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/header.css">
     <title>Document</title>
 </head>
 <body>
-    <header>
-
+    <header class="container__header">
+        <div class="container__header--tittle">
+            <h1 class="container__header--tittle-h1">PokeGame JP</h1>
+        </div>
+        <div class="container__header--select">
+            <div class="container__header--select-generation select-type">
+                <select name="generation-pokemon">
+                    <option selected> </option>
+                    <option value="0">All Generation</option>
+                    <option value="1">1 Generation</option>
+                    <option value="2">2 Generation</option>
+                    <option value="3">3 Generation</option>
+                    <option value="4">4 Generation</option>
+                    <option value="5">5 Generation</option>
+                </select>
+            </div>
+            <div class="container__header--select-type">
+                <div class="container__header--select-type--one">
+                    <select name="type-one-pokemon">
+                        <option selected> </option>
+                        <option value="0">1</option>
+                        <option value="1">2</option>
+                    </select>
+                </div>
+                <div class="container__header--select-type--two">
+                    <select name="type-two-pokemon">
+                        <option selected> </option>
+                        <option value="0">1</option>
+                        <option value="1">2</option>
+                    </select>
+                </div>
+            </div>
+        </div>
     </header>
     <main>
         
