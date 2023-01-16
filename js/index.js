@@ -14,6 +14,11 @@ let optionTypeTwo = document.getElementById('type-two-pokemon');
 let optionTypeTwoSelect;
 let containerCards = document.getElementById('container-card')
 
+const generatorType = async () => {
+    const urlAPI = `${API}${URL_TYPE}?limit=${countRender}`
+    const response = await pokeData(urlAPI)
+}
+
 function createCardPokemon (dataJson){    
     let viewCard = `
     <div class="card">
@@ -31,7 +36,6 @@ function createCardPokemon (dataJson){
     `
     containerCards.innerHTML+=viewCard;
 }
-
 
 async function pokeData (api) {
     // EXECUTE getdata y render data
@@ -173,3 +177,4 @@ optionGenerationPokemon.addEventListener('change',selectGenerationPokemon);
 optionTypeOne.addEventListener('change',selectTypeOnePokemon);
 optionTypeTwo.addEventListener('change',selectTypeTwoPokemon);
 generatorPokemon()
+generatorType()
