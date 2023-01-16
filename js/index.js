@@ -5,7 +5,7 @@ const URL_TYPE = `type/`;
 const URL_POKEMON = `pokemon/`;
 const URL_NATURE = `nature/`;
 let generationPokemonSelect=null,typeOne=null,typeTwo=null;
-let countRender = 3,initialGenerationSearch=0
+let countRender = 9,initialGenerationSearch=0,countRenderType
 
 let optionGenerationPokemon = document.getElementById('generation-pokemon');
 let optionTypeOne = document.getElementById('type-one-pokemon');
@@ -14,9 +14,23 @@ let optionTypeTwo = document.getElementById('type-two-pokemon');
 let optionTypeTwoSelect;
 let containerCards = document.getElementById('container-card')
 
+function createOptionTypePokemon (dataJson,optionType){   
+    let viewTypePokemon = `
+    <option value="${dataJson.id}">${dataJson.name}</option>
+    `
+    optionType.innerHTML+=viewTypePokemon;
+}
+
 const generatorType = async () => {
-    const urlAPI = `${API}${URL_TYPE}?limit=${countRender}`
+    countRender < 20 ? countRenderType = 20 : countRenderType = countRender
+    const urlAPI = `${API}${URL_TYPE}?limit=${countRenderType}`
     const response = await pokeData(urlAPI)
+    for (let index = 0; index < countRenderType; index++) {
+        let urlAPIPokemon = `${response.results[index].url}`;
+        const dataPokemon = await pokeData(urlAPIPokemon);
+        createOptionTypePokemon(dataPokemon,optionTypeOne);
+        createOptionTypePokemon(dataPokemon,optionTypeTwo);
+    }
 }
 
 function createCardPokemon (dataJson){    
