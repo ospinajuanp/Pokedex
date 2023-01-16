@@ -60,13 +60,21 @@ body {
   margin-top: 8px;
 }
 .container__detail--content-name {
-  background-color: black;
   width: 100%;
   height: auto;
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: space-between;
+  align-items: end;
   gap: 24px;
+  font-size: 24px;
+}
+.container__detail--content-name p:nth-child(2) {
+  width: 100px;
+  background-color: #227C70;
+  border: 1px solid #E6E2C3;
+  border-radius: 20px;
+  text-align: center;
 }
 .container__detail--content-life, .container__detail--content-type, .container__detail--content-damagerelations, .container__detail--content-ofensive, .container__detail--content-defensive {
   display: none;
