@@ -5,7 +5,7 @@ const URL_TYPE = `type/`;
 const URL_POKEMON = `pokemon/`;
 const URL_NATURE = `nature/`;
 let generationPokemonSelect=null,typeOne=null,typeTwo=null;
-let countRenderInitial = 3
+let countRender = 3,initialGenerationSearch=0
 
 let optionGenerationPokemon = document.getElementById('generation-pokemon');
 let optionTypeOne = document.getElementById('type-one-pokemon');
@@ -40,10 +40,10 @@ async function pokeData (api) {
     return data
 }
 
-const generatorPokemonOpenWeb = async () => {
-    const urlAPI = `${API}${URL_POKEMON}?limit=${countRenderInitial}`
+const generatorPokemon = async () => {
+    const urlAPI = `${API}${URL_POKEMON}?limit=${countRender}`
     const response = await pokeData(urlAPI)
-    for (let index = 0; index < 20; index++) {
+    for (let index = initialGenerationSearch; index < countRender; index++) {
         let urlAPIPokemon = `${response.results[index].url}`;
         const dataPokemon = await pokeData(urlAPIPokemon);
         createCardPokemon(dataPokemon);
@@ -52,6 +52,7 @@ const generatorPokemonOpenWeb = async () => {
 
 function selectTypeTwoPokemon(){
     typeTwo = selectTypePokemon(optionTypeTwo)
+
 }
 
 function selectTypeOnePokemon(){
@@ -132,32 +133,43 @@ function selectGenerationPokemon(){
     switch (selectedGeneration){
         case 'null':
             generationPokemonSelect = null
+            initialGenerationSearch = 0
         break;
         case 'all':
             generationPokemonSelect = lastGenerationPokemonActive
+            initialGenerationSearch = 0
         break;
         case 'first':
             generationPokemonSelect = GENERATIONS.first
+            initialGenerationSearch = 0
         break;
         case 'second':
             generationPokemonSelect = GENERATIONS.second
+            initialGenerationSearch = parseInt(GENERATIONS.first) + 1
         break;
         case 'third':
             generationPokemonSelect = GENERATIONS.third
+            initialGenerationSearch = parseInt(GENERATIONS.second) + 1
         break;
         case 'fourth':
             generationPokemonSelect = GENERATIONS.fourth
+            initialGenerationSearch = parseInt(GENERATIONS.third) + 1
         break;
         case 'fifth':
             generationPokemonSelect = GENERATIONS.fifth
+            initialGenerationSearch = parseInt(GENERATIONS.fourth) + 1
         break;
         default:
             generationPokemonSelect = GENERATIONS.all
+            initialGenerationSearch = 0
         break;
     }
+    countRender = parseInt(generationPokemonSelect)
+    containerCards.innerHTML=''
+    generatorPokemon()
 }
 
 optionGenerationPokemon.addEventListener('change',selectGenerationPokemon);
 optionTypeOne.addEventListener('change',selectTypeOnePokemon);
 optionTypeTwo.addEventListener('change',selectTypeTwoPokemon);
-generatorPokemonOpenWeb()
+generatorPokemon()

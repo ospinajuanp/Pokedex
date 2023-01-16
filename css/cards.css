@@ -59,8 +59,8 @@
   align-items: center;
 }
 .card__up-img img {
-  width: 150px;
-  max-width: 80px;
+  
+  width: 80px;
 }
 .card__bottom {
   display: flex;
