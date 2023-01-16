@@ -12,6 +12,19 @@ let optionTypeOneSelect;
 let optionTypeTwo = document.getElementById('type-two-pokemon');
 let optionTypeTwoSelect;
 
+
+async function pokeData (api) {
+    // EXECUTE getdata y render data
+    const response = await fetch(api)
+    const data = (await response).json()
+    return data
+}
+
+const generatorGalleryPokemonOpen = async () => {
+    const urlAPI = `${API}${URL_POKEMON}?limit=20`
+    const response = await pokeData(urlAPI)
+}
+
 function selectTypeTwoPokemon(){
     typeTwo = selectTypePokemon(optionTypeTwo)
 }
@@ -122,3 +135,4 @@ function selectGenerationPokemon(){
 optionGenerationPokemon.addEventListener('change',selectGenerationPokemon);
 optionTypeOne.addEventListener('change',selectTypeOnePokemon);
 optionTypeTwo.addEventListener('change',selectTypeTwoPokemon);
+generatorGalleryPokemonOpen()
