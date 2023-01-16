@@ -70,9 +70,8 @@ body{
         margin-top: 8px;
         
         &-name{
-            
             width: 100%;
-            height: auto;
+            height: 24px;
             display: flex;
             flex-direction: row;
             justify-content: space-between;
@@ -80,12 +79,27 @@ body{
             gap: 24px;
             font-size: 24px;
             
-            p:nth-child(2){
-                width: 100px;
-                background-color: $secondary-color;
-                border: 1px solid $quaternary-color;
-                border-radius: 20px;
-                text-align: center;
+            // p:nth-child(2){
+            //     width: 100px;
+            //     background-color: $secondary-color;
+            //     border: 1px solid $quaternary-color;
+            //     border-radius: 20px;
+            //     text-align: center;
+            // }
+            
+            &-type{
+                height: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                
+                div{
+                    height: 100%;
+                }
+
+                div > img{
+                    width: 24px;
+                }
             }
         }
         
@@ -113,12 +127,18 @@ body{
                 }
             }
         }
-
-        &-type,&-damagerelations,&-ofensive,&-defensive{
+        
+        &-damagerelations,&-ofensive,&-defensive{
             display: none;
         }
 
     }
 
 
+}
+.type img {
+    width: 45px;
+    border: 3px solid $dar-color;
+    border-radius: 50%;
+    overflow: hidden;
 }

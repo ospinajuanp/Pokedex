@@ -61,7 +61,7 @@ body {
 }
 .container__detail--content-name {
   width: 100%;
-  height: auto;
+  height: 24px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -69,12 +69,17 @@ body {
   gap: 24px;
   font-size: 24px;
 }
-.container__detail--content-name p:nth-child(2) {
-  width: 100px;
-  background-color: #227C70;
-  border: 1px solid #E6E2C3;
-  border-radius: 20px;
-  text-align: center;
+.container__detail--content-name-type {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+.container__detail--content-name-type div {
+  height: 100%;
+}
+.container__detail--content-name-type div > img {
+  width: 24px;
 }
 .container__detail--content-life {
   display: flex;
@@ -97,8 +102,15 @@ body {
   height: 100%;
   text-align: center;
 }
-.container__detail--content-type, .container__detail--content-damagerelations, .container__detail--content-ofensive, .container__detail--content-defensive {
+.container__detail--content-damagerelations, .container__detail--content-ofensive, .container__detail--content-defensive {
   display: none;
+}
+
+.type img {
+  width: 45px;
+  border: 3px solid #000;
+  border-radius: 50%;
+  overflow: hidden;
 }
 
 /*# sourceMappingURL=detail.css.map */
