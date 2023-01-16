@@ -5,6 +5,7 @@ const URL_TYPE = `type/`;
 const URL_POKEMON = `pokemon/`;
 const URL_NATURE = `nature/`;
 let generationPokemonSelect=null,typeOne=null,typeTwo=null;
+let countRenderInitial = 3
 
 let optionGenerationPokemon = document.getElementById('generation-pokemon');
 let optionTypeOne = document.getElementById('type-one-pokemon');
@@ -18,9 +19,9 @@ function createCardPokemon (dataJson){
     <div class="card">
         <div class="card__up">
             <p class="card__up-view">VIEW</p>
-            <P class="card__up-name">${dataJson.name}</P>
+            <P class="card__up-name">${dataJson.name.toUpperCase()}</P>
             <figure class="card__up-img">
-                <img class="card__up-img--style" src="${dataJson.sprites.dream_world.front_default}" alt="pokemon ${dataJson.name}">
+                <img class="card__up-img--style" src="${dataJson.sprites.other.dream_world.front_default}" alt="pokemon ${dataJson.name}">
             </figure>
         </div>
         <div class="card__bottom">
@@ -28,7 +29,7 @@ function createCardPokemon (dataJson){
         </div>
     </div>
     `
-    containerCards.innerHTML.innerHTML+=viewCard;
+    containerCards.innerHTML+=viewCard;
 }
 
 
@@ -40,8 +41,13 @@ async function pokeData (api) {
 }
 
 const generatorPokemonOpenWeb = async () => {
-    const urlAPI = `${API}${URL_POKEMON}?limit=20`
+    const urlAPI = `${API}${URL_POKEMON}?limit=${countRenderInitial}`
     const response = await pokeData(urlAPI)
+    for (let index = 0; index < 20; index++) {
+        let urlAPIPokemon = `${response.results[index].url}`;
+        const dataPokemon = await pokeData(urlAPIPokemon);
+        createCardPokemon(dataPokemon);
+    }
 }
 
 function selectTypeTwoPokemon(){
