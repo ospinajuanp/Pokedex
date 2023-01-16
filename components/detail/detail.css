@@ -76,7 +76,28 @@ body {
   border-radius: 20px;
   text-align: center;
 }
-.container__detail--content-life, .container__detail--content-type, .container__detail--content-damagerelations, .container__detail--content-ofensive, .container__detail--content-defensive {
+.container__detail--content-life {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+.container__detail--content-life p {
+  width: 63px;
+}
+.container__detail--content-life div {
+  width: 200px;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #227C70;
+  border: 1px solid #E6E2C3;
+}
+.container__detail--content-life div p {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+.container__detail--content-type, .container__detail--content-damagerelations, .container__detail--content-ofensive, .container__detail--content-defensive {
   display: none;
 }
 
