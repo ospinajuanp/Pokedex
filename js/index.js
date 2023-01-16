@@ -4,12 +4,18 @@ const API = "https://pokeapi.co/api/v2/";
 const URL_TYPE = `type/`;
 const URL_POKEMON = `pokemon/`;
 const URL_NATURE = `nature/`;
-let typeNumber,typeOne;
+let typeNumber,typeOne,typeTwo;
 
 let optionGenerationPokemon = document.getElementById('generation-pokemon');
 let generationPokemonSelect;
 let optionTypeOne = document.getElementById('type-one-pokemon');
 let optionTypeOneSelect;
+let optionTypeTwo = document.getElementById('type-two-pokemon');
+let optionTypeTwoSelect;
+
+function selectTypeTwoPokemon(){
+    typeTwo = selectTypePokemon(optionTypeTwo)
+}
 
 function selectTypeOnePokemon(){
     typeOne = selectTypePokemon(optionTypeOne)
@@ -110,3 +116,4 @@ function selectGenerationPokemon(){
 
 optionGenerationPokemon.addEventListener('change',selectGenerationPokemon);
 optionTypeOne.addEventListener('change',selectTypeOnePokemon);
+optionTypeTwo.addEventListener('change',selectTypeTwoPokemon);
