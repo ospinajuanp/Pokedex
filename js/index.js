@@ -11,6 +11,25 @@ let optionTypeOne = document.getElementById('type-one-pokemon');
 let optionTypeOneSelect;
 let optionTypeTwo = document.getElementById('type-two-pokemon');
 let optionTypeTwoSelect;
+let containerCards = document.getElementById('container-card')
+
+function createCardPokemon (dataJson){    
+    let viewCard = `
+    <div class="card">
+        <div class="card__up">
+            <p class="card__up-view">VIEW</p>
+            <P class="card__up-name">${dataJson.name}</P>
+            <figure class="card__up-img">
+                <img class="card__up-img--style" src="${dataJson.sprites.dream_world.front_default}" alt="pokemon ${dataJson.name}">
+            </figure>
+        </div>
+        <div class="card__bottom">
+            <p class="card__bottom-button">PLAY</p>
+        </div>
+    </div>
+    `
+    containerCards.innerHTML.innerHTML+=viewCard;
+}
 
 
 async function pokeData (api) {
@@ -20,7 +39,7 @@ async function pokeData (api) {
     return data
 }
 
-const generatorGalleryPokemonOpen = async () => {
+const generatorPokemonOpenWeb = async () => {
     const urlAPI = `${API}${URL_POKEMON}?limit=20`
     const response = await pokeData(urlAPI)
 }
@@ -135,4 +154,4 @@ function selectGenerationPokemon(){
 optionGenerationPokemon.addEventListener('change',selectGenerationPokemon);
 optionTypeOne.addEventListener('change',selectTypeOnePokemon);
 optionTypeTwo.addEventListener('change',selectTypeTwoPokemon);
-generatorGalleryPokemonOpen()
+generatorPokemonOpenWeb()
