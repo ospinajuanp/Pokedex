@@ -4,9 +4,77 @@ const API = "https://pokeapi.co/api/v2/";
 const URL_TYPE = `type/`;
 const URL_POKEMON = `pokemon/`;
 const URL_NATURE = `nature/`;
+let typeNumber;
 
 let optionGenerationPokemon = document.getElementById('generation-pokemon');
 let generationPokemonSelect;
+
+function selectTypePokemon(optionType){
+    let selectedType = optionType.value;
+    switch (selectedType){
+        case '1':
+            typeNumber = 1
+        break;
+        case '2':
+            typeNumber = 2
+        break;
+        case '3':
+            typeNumber = 3
+        break;
+        case '4':
+            typeNumber = 4
+        break;
+        case '5':
+            typeNumber = 5
+        break;
+        case '6':
+            typeNumber = 6
+        break;
+        case '7':
+            typeNumber = 7
+        break;
+        case '8':
+            typeNumber = 8
+        break;
+        case '9':
+            typeNumber = 9
+        break;
+        case '10':
+            typeNumber = 10
+        break;
+        case '11':
+            typeNumber = 11
+        break;
+        case '12':
+            typeNumber = 12
+        break;
+        case '13':
+            typeNumber = 13
+        break;
+        case '14':
+            typeNumber = 14
+        break;
+        case '15':
+            typeNumber = 15
+        break;
+        case '16':
+            typeNumber = 16
+        break;
+        case '17':
+            typeNumber = 17
+        break;
+        case '18':
+            typeNumber = 18
+        break;
+        case '10001':
+            typeNumber = 10001
+        break;
+        case '10002':
+            typeNumber = 10002
+        break;
+
+    }
+}
 
 function selectGenerationPokemon(){
     let selectedGeneration = optionGenerationPokemon.value;
