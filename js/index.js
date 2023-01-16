@@ -4,75 +4,79 @@ const API = "https://pokeapi.co/api/v2/";
 const URL_TYPE = `type/`;
 const URL_POKEMON = `pokemon/`;
 const URL_NATURE = `nature/`;
-let typeNumber;
+let typeNumber,typeOne;
 
 let optionGenerationPokemon = document.getElementById('generation-pokemon');
 let generationPokemonSelect;
+let optionTypeOne = document.getElementById('type-one-pokemon');
+let optionTypeOneSelect;
+
+function selectTypeOnePokemon(){
+    typeOne = selectTypePokemon(optionTypeOne)
+}
 
 function selectTypePokemon(optionType){
     let selectedType = optionType.value;
     switch (selectedType){
         case '1':
-            typeNumber = 1
-        break;
+            return typeNumber = 1
+        
         case '2':
-            typeNumber = 2
-        break;
+            return typeNumber = 2
+        
         case '3':
-            typeNumber = 3
-        break;
+            return typeNumber = 3
+        
         case '4':
-            typeNumber = 4
-        break;
+            return typeNumber = 4
+        
         case '5':
-            typeNumber = 5
-        break;
+            return typeNumber = 5
+        
         case '6':
-            typeNumber = 6
-        break;
+            return typeNumber = 6
+        
         case '7':
-            typeNumber = 7
-        break;
+            return typeNumber = 7
+        
         case '8':
-            typeNumber = 8
-        break;
+            return typeNumber = 8
+        
         case '9':
-            typeNumber = 9
-        break;
+            return typeNumber = 9
+        
         case '10':
-            typeNumber = 10
-        break;
+            return typeNumber = 10
+        
         case '11':
-            typeNumber = 11
-        break;
+            return typeNumber = 11
+        
         case '12':
-            typeNumber = 12
-        break;
+            return typeNumber = 12
+        
         case '13':
-            typeNumber = 13
-        break;
+            return typeNumber = 13
+        
         case '14':
-            typeNumber = 14
-        break;
+            return typeNumber = 14
+        
         case '15':
-            typeNumber = 15
-        break;
+            return typeNumber = 15
+        
         case '16':
-            typeNumber = 16
-        break;
+            return typeNumber = 16
+        
         case '17':
-            typeNumber = 17
-        break;
+            return typeNumber = 17
+        
         case '18':
-            typeNumber = 18
-        break;
+            return typeNumber = 18
+        
         case '10001':
-            typeNumber = 10001
-        break;
+            return typeNumber = 10001
+        
         case '10002':
-            typeNumber = 10002
-        break;
-
+            return typeNumber = 10002
     }
 }
 
@@ -105,3 +109,4 @@ function selectGenerationPokemon(){
 }
 
 optionGenerationPokemon.addEventListener('change',selectGenerationPokemon);
+optionTypeOne.addEventListener('change',selectTypeOnePokemon);
