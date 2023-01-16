@@ -163,19 +163,19 @@ function selectGenerationPokemon(){
         break;
         case 'second':
             generationPokemonSelect = GENERATIONS.second
-            initialGenerationSearch = parseInt(GENERATIONS.first) + 1
+            initialGenerationSearch = parseInt(GENERATIONS.first)
         break;
         case 'third':
             generationPokemonSelect = GENERATIONS.third
-            initialGenerationSearch = parseInt(GENERATIONS.second) + 1
+            initialGenerationSearch = parseInt(GENERATIONS.second)
         break;
         case 'fourth':
             generationPokemonSelect = GENERATIONS.fourth
-            initialGenerationSearch = parseInt(GENERATIONS.third) + 1
+            initialGenerationSearch = parseInt(GENERATIONS.third)
         break;
         case 'fifth':
             generationPokemonSelect = GENERATIONS.fifth
-            initialGenerationSearch = parseInt(GENERATIONS.fourth) + 1
+            initialGenerationSearch = parseInt(GENERATIONS.fourth)
         break;
         default:
             generationPokemonSelect = GENERATIONS.all
