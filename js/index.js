@@ -14,67 +14,79 @@ let optionTypeTwo = document.getElementById('type-two-pokemon');
 let optionTypeTwoSelect;
 let containerCards = document.getElementById('container-card')
 
-const generatorPokemonType = async () => {
-    containerCards.innerHTML='';
-    const urlAPI = `${API}${URL_TYPE}?limit=${countRender}`
-    const response = await pokeData(urlAPI)
+const generatorPokemon = async () => {
     
-    for (let index = 0; index < 20; index++) {
-        if (typeOne != null && typeTwo != null){
-            if ((response.results[index].name == typeOne) || (response.results[index].name == typeTwo)){
-                let urlAPIPokemon = `${response.results[index].url}`;
-                const dataTypePokemon = await pokeData(urlAPIPokemon);
-                for (let indey = 0; indey < dataTypePokemon.pokemon.length; indey++) {
-                    let urlAPIPokemonType = `${dataTypePokemon.pokemon[indey].pokemon.url}`;
-                    const dataPokemon = await pokeData(urlAPIPokemonType);
-                    if (dataPokemon.id > initialGenerationSearch && dataPokemon.id < countRender){
-                        if((dataPokemon.types[0].type.name == typeOne)){
-
-                            if((dataPokemon.types[1].type.name == typeTwo)){
-                                createCardPokemon(dataPokemon);
-                            }
-                        }
-                        if((dataPokemon.types[1].type.name == typeOne)){
-                            if((dataPokemon.types[0].type.name == typeTwo)){
-                                createCardPokemon(dataPokemon);
-                            }
-                        }
-                    }
-
-                }
-            return
-            }
-        }else{
-            if(typeOne!=null){
-                if (response.results[index].name == typeOne){
-                    let urlAPIPokemon = `${response.results[index].url}`;
-                    const dataTypePokemon = await pokeData(urlAPIPokemon);
-                    for (let indey = 0; indey < dataTypePokemon.pokemon.length; indey++) {
-                        let urlAPIPokemonType = `${dataTypePokemon.pokemon[indey].pokemon.url}`;
-                        const dataPokemon = await pokeData(urlAPIPokemonType);
-                        if (dataPokemon.id > initialGenerationSearch && dataPokemon.id < countRender){
-                            createCardPokemon(dataPokemon);
-                        }
-                    }
-                }
-            }
-            if(typeTwo!=null){
-                if (response.results[index].name == typeTwo){
-                    let urlAPIPokemon = `${response.results[index].url}`;
-                    const dataTypePokemon = await pokeData(urlAPIPokemon);
-                    for (let indey = 0; indey < dataTypePokemon.pokemon.length; indey++) {
-                        let urlAPIPokemonType = `${dataTypePokemon.pokemon[indey].pokemon.url}`;
-                        const dataPokemon = await pokeData(urlAPIPokemonType);
-                        if (dataPokemon.id > initialGenerationSearch && dataPokemon.id < countRender){
-                            createCardPokemon(dataPokemon);
-                        }
-                    }
-                }
-            }
+    if(typeOne == null && typeTwo == null){
+        const urlAPI = `${API}${URL_POKEMON}?limit=${countRender}`
+        const response = await pokeData(urlAPI)
+        for (let index = initialGenerationSearch; index < countRender; index++) {
+            let urlAPIPokemon = `${response.results[index].url}`;
+            const dataPokemon = await pokeData(urlAPIPokemon);
+            createCardPokemon(dataPokemon);
         }
+    }else{
+        containerCards.innerHTML='';
+        const urlAPI = `${API}${URL_TYPE}?limit=${countRenderType}`
+        const response = await pokeData(urlAPI)
         
-
+        for (let index = 0; index < countRenderType; index++) {
+            if (typeOne != null && typeTwo != null){
+                if ((response.results[index].name == typeOne) || (response.results[index].name == typeTwo)){
+                    let urlAPIPokemon = `${response.results[index].url}`;
+                    const dataTypePokemon = await pokeData(urlAPIPokemon);
+                    for (let indey = 0; indey < dataTypePokemon.pokemon.length; indey++) {
+                        let urlAPIPokemonType = `${dataTypePokemon.pokemon[indey].pokemon.url}`;
+                        const dataPokemon = await pokeData(urlAPIPokemonType);
+                        if (dataPokemon.id > initialGenerationSearch && dataPokemon.id < countRender){
+                            if((dataPokemon.types[0].type.name == typeOne)){
+    
+                                if((dataPokemon.types[1].type.name == typeTwo)){
+                                    createCardPokemon(dataPokemon);
+                                }
+                            }
+                            if((dataPokemon.types[1].type.name == typeOne)){
+                                if((dataPokemon.types[0].type.name == typeTwo)){
+                                    createCardPokemon(dataPokemon);
+                                }
+                            }
+                        }
+    
+                    }
+                return
+                }
+            }else{
+                if(typeOne!=null){
+                    if (response.results[index].name == typeOne){
+                        let urlAPIPokemon = `${response.results[index].url}`;
+                        const dataTypePokemon = await pokeData(urlAPIPokemon);
+                        for (let indey = 0; indey < dataTypePokemon.pokemon.length; indey++) {
+                            let urlAPIPokemonType = `${dataTypePokemon.pokemon[indey].pokemon.url}`;
+                            const dataPokemon = await pokeData(urlAPIPokemonType);
+                            if (dataPokemon.id > initialGenerationSearch && dataPokemon.id < countRender){
+                                createCardPokemon(dataPokemon);
+                            }
+                        }
+                    }
+                }
+                if(typeTwo!=null){
+                    if (response.results[index].name == typeTwo){
+                        let urlAPIPokemon = `${response.results[index].url}`;
+                        const dataTypePokemon = await pokeData(urlAPIPokemon);
+                        for (let indey = 0; indey < dataTypePokemon.pokemon.length; indey++) {
+                            let urlAPIPokemonType = `${dataTypePokemon.pokemon[indey].pokemon.url}`;
+                            const dataPokemon = await pokeData(urlAPIPokemonType);
+                            if (dataPokemon.id > initialGenerationSearch && dataPokemon.id < countRender){
+                                createCardPokemon(dataPokemon);
+                            }
+                        }
+                    }
+                }
+            }
+            
+    
+        }
     }
+    
 }
 
 function createOptionTypePokemon (dataJson,optionType){   
@@ -85,7 +97,7 @@ function createOptionTypePokemon (dataJson,optionType){
 }
 
 const generatorType = async () => {
-    countRender < 20 ? countRenderType = 20 : countRenderType = countRender
+    countRender != 20 ? countRenderType = 20 : countRenderType = countRender
     const urlAPI = `${API}${URL_TYPE}?limit=${countRenderType}`
     const response = await pokeData(urlAPI)
     for (let index = 0; index < countRenderType; index++) {
@@ -121,24 +133,14 @@ async function pokeData (api) {
     return data
 }
 
-const generatorPokemon = async () => {
-    const urlAPI = `${API}${URL_POKEMON}?limit=${countRender}`
-    const response = await pokeData(urlAPI)
-    for (let index = initialGenerationSearch; index < countRender; index++) {
-        let urlAPIPokemon = `${response.results[index].url}`;
-        const dataPokemon = await pokeData(urlAPIPokemon);
-        createCardPokemon(dataPokemon);
-    }
-}
-
 function selectTypeTwoPokemon(){
     typeTwo = selectTypePokemon(optionTypeTwo)
-    generatorPokemonType()
+    generatorPokemon()
 }
 
 function selectTypeOnePokemon(){
     typeOne = selectTypePokemon(optionTypeOne)
-    generatorPokemonType()
+    generatorPokemon()
 }
 
 function selectTypePokemon(optionType){
