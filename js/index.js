@@ -13,10 +13,17 @@ let optionTypeOneSelect;
 let optionTypeTwo = document.getElementById('type-two-pokemon');
 let optionTypeTwoSelect;
 let containerCards = document.getElementById('container-card')
-
+// Active Or Desactive Buttons Filter
+function changeButton (boolChange){
+    optionGenerationPokemon.disabled = boolChange
+    optionTypeOne.disabled = boolChange
+    optionTypeTwo.disabled = boolChange
+}
+// Generate Pokemon Initial Web, Filter Generation, Filter Type One And Filter Type Two
 const generatorPokemon = async () => {
-    
+    // Generation Select
     if(typeOne == null && typeTwo == null){
+        changeButton(true)
         const urlAPI = `${API}${URL_POKEMON}?limit=${countRender}`
         const response = await pokeData(urlAPI)
         for (let index = initialGenerationSearch; index < countRender; index++) {
@@ -24,12 +31,14 @@ const generatorPokemon = async () => {
             const dataPokemon = await pokeData(urlAPIPokemon);
             createCardPokemon(dataPokemon);
         }
-    }else{
+        changeButton(false)
+    }else{ // Different Generation Select
         containerCards.innerHTML='';
         const urlAPI = `${API}${URL_TYPE}?limit=${countRenderType}`
         const response = await pokeData(urlAPI)
         
         for (let index = 0; index < countRenderType; index++) {
+            // Type One And Two Select
             if (typeOne != null && typeTwo != null){
                 if ((response.results[index].name == typeOne) || (response.results[index].name == typeTwo)){
                     let urlAPIPokemon = `${response.results[index].url}`;
@@ -55,7 +64,9 @@ const generatorPokemon = async () => {
                 return
                 }
             }else{
+                // Type Onw Select
                 if(typeOne!=null){
+                    changeButton(true)
                     if (response.results[index].name == typeOne){
                         let urlAPIPokemon = `${response.results[index].url}`;
                         const dataTypePokemon = await pokeData(urlAPIPokemon);
@@ -67,8 +78,11 @@ const generatorPokemon = async () => {
                             }
                         }
                     }
+                    changeButton(false)
                 }
+                // Type Two Select
                 if(typeTwo!=null){
+                    changeButton(true)
                     if (response.results[index].name == typeTwo){
                         let urlAPIPokemon = `${response.results[index].url}`;
                         const dataTypePokemon = await pokeData(urlAPIPokemon);
@@ -80,6 +94,7 @@ const generatorPokemon = async () => {
                             }
                         }
                     }
+                    changeButton(false)
                 }
             }
             
@@ -88,14 +103,14 @@ const generatorPokemon = async () => {
     }
     
 }
-
+// Create Select Option From API
 function createOptionTypePokemon (dataJson,optionType){   
     let viewTypePokemon = `
     <option value="${dataJson.name}">${dataJson.name}</option>
     `
     optionType.innerHTML+=viewTypePokemon;
 }
-
+// Get Select Option From API
 const generatorType = async () => {
     countRender != 20 ? countRenderType = 20 : countRenderType = countRender
     const urlAPI = `${API}${URL_TYPE}?limit=${countRenderType}`
@@ -107,7 +122,7 @@ const generatorType = async () => {
         createOptionTypePokemon(dataPokemon,optionTypeTwo);
     }
 }
-
+// Create Card Pokemon From API
 function createCardPokemon (dataJson){    
     let viewCard = `
     <div class="card">
@@ -125,34 +140,38 @@ function createCardPokemon (dataJson){
     `
     containerCards.innerHTML+=viewCard;
 }
-
+// Get Data Pokemon From API
 async function pokeData (api) {
     // EXECUTE getdata y render data
     const response = await fetch(api)
     const data = (await response).json()
     return data
 }
-
+// Filter Type Two
 function selectTypeTwoPokemon(){
     typeTwo = selectTypePokemon(optionTypeTwo)
     generatorPokemon()
 }
-
+// Filter Type One
 function selectTypeOnePokemon(){
     typeOne = selectTypePokemon(optionTypeOne)
     generatorPokemon()
 }
-
+// Get Type Filter
 function selectTypePokemon(optionType){
-    return optionType.value;    
+    if(optionType.value == 'null'){
+        return null
+    }else{
+        return optionType.value;
+    }
 }
-
+// Get Filter Generation
 function selectGenerationPokemon(){
     let selectedGeneration = optionGenerationPokemon.value;
     let lastGenerationPokemonActive = GENERATIONS.fifth;
     switch (selectedGeneration){
         case 'null':
-            generationPokemonSelect = null
+            generationPokemonSelect = 8
             initialGenerationSearch = 0
         break;
         case 'all':
@@ -188,9 +207,13 @@ function selectGenerationPokemon(){
     containerCards.innerHTML=''
     generatorPokemon()
 }
-
+// Add Event Change Generation
 optionGenerationPokemon.addEventListener('change',selectGenerationPokemon);
+// Add Event Change Type One
 optionTypeOne.addEventListener('change',selectTypeOnePokemon);
+// Add Event Change Type One
 optionTypeTwo.addEventListener('change',selectTypeTwoPokemon);
+// Generate Pokemon Initial Web
 generatorPokemon()
+// Generate Type Of Pokemon Initial Web
 generatorType()
