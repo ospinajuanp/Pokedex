@@ -14,9 +14,72 @@ let optionTypeTwo = document.getElementById('type-two-pokemon');
 let optionTypeTwoSelect;
 let containerCards = document.getElementById('container-card')
 
+const generatorPokemonType = async () => {
+    containerCards.innerHTML='';
+    const urlAPI = `${API}${URL_TYPE}?limit=${countRender}`
+    const response = await pokeData(urlAPI)
+    
+    for (let index = 0; index < 20; index++) {
+        if (typeOne != null && typeTwo != null){
+            if ((response.results[index].name == typeOne) || (response.results[index].name == typeTwo)){
+                let urlAPIPokemon = `${response.results[index].url}`;
+                const dataTypePokemon = await pokeData(urlAPIPokemon);
+                for (let indey = 0; indey < dataTypePokemon.pokemon.length; indey++) {
+                    let urlAPIPokemonType = `${dataTypePokemon.pokemon[indey].pokemon.url}`;
+                    const dataPokemon = await pokeData(urlAPIPokemonType);
+                    if (dataPokemon.id > initialGenerationSearch && dataPokemon.id < countRender){
+                        if((dataPokemon.types[0].type.name == typeOne)){
+
+                            if((dataPokemon.types[1].type.name == typeTwo)){
+                                createCardPokemon(dataPokemon);
+                            }
+                        }
+                        if((dataPokemon.types[1].type.name == typeOne)){
+                            if((dataPokemon.types[0].type.name == typeTwo)){
+                                createCardPokemon(dataPokemon);
+                            }
+                        }
+                    }
+
+                }
+            return
+            }
+        }else{
+            if(typeOne!=null){
+                if (response.results[index].name == typeOne){
+                    let urlAPIPokemon = `${response.results[index].url}`;
+                    const dataTypePokemon = await pokeData(urlAPIPokemon);
+                    for (let indey = 0; indey < dataTypePokemon.pokemon.length; indey++) {
+                        let urlAPIPokemonType = `${dataTypePokemon.pokemon[indey].pokemon.url}`;
+                        const dataPokemon = await pokeData(urlAPIPokemonType);
+                        if (dataPokemon.id > initialGenerationSearch && dataPokemon.id < countRender){
+                            createCardPokemon(dataPokemon);
+                        }
+                    }
+                }
+            }
+            if(typeTwo!=null){
+                if (response.results[index].name == typeTwo){
+                    let urlAPIPokemon = `${response.results[index].url}`;
+                    const dataTypePokemon = await pokeData(urlAPIPokemon);
+                    for (let indey = 0; indey < dataTypePokemon.pokemon.length; indey++) {
+                        let urlAPIPokemonType = `${dataTypePokemon.pokemon[indey].pokemon.url}`;
+                        const dataPokemon = await pokeData(urlAPIPokemonType);
+                        if (dataPokemon.id > initialGenerationSearch && dataPokemon.id < countRender){
+                            createCardPokemon(dataPokemon);
+                        }
+                    }
+                }
+            }
+        }
+        
+
+    }
+}
+
 function createOptionTypePokemon (dataJson,optionType){   
     let viewTypePokemon = `
-    <option value="${dataJson.id}">${dataJson.name}</option>
+    <option value="${dataJson.name}">${dataJson.name}</option>
     `
     optionType.innerHTML+=viewTypePokemon;
 }
@@ -70,79 +133,16 @@ const generatorPokemon = async () => {
 
 function selectTypeTwoPokemon(){
     typeTwo = selectTypePokemon(optionTypeTwo)
-
+    generatorPokemonType()
 }
 
 function selectTypeOnePokemon(){
     typeOne = selectTypePokemon(optionTypeOne)
+    generatorPokemonType()
 }
 
 function selectTypePokemon(optionType){
-    let selectedType = optionType.value;
-    switch (selectedType){
-        case 'null':
-            return null
-
-        case '1':
-            return 1
-        
-        case '2':
-            return 2
-        
-        case '3':
-            return 3
-        
-        case '4':
-            return 4
-        
-        case '5':
-            return 5
-        
-        case '6':
-            return 6
-        
-        case '7':
-            return 7
-        
-        case '8':
-            return 8
-        
-        case '9':
-            return 9
-        
-        case '10':
-            return 10
-        
-        case '11':
-            return 11
-        
-        case '12':
-            return 12
-        
-        case '13':
-            return 13
-        
-        case '14':
-            return 14
-        
-        case '15':
-            return 15
-        
-        case '16':
-            return 16
-        
-        case '17':
-            return 17
-        
-        case '18':
-            return 18
-        
-        case '10001':
-            return 10001
-        
-        case '10002':
-            return 10002
-    }
+    return optionType.value;    
 }
 
 function selectGenerationPokemon(){
