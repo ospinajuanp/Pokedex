@@ -16,6 +16,7 @@ let containerCards = document.getElementById('container-card')
 let containerDetail = document.getElementById('container__detail')
 let containerHeader = document.getElementById('container__header')
 
+// Create Detail Stat Pokemon Send
 function CreateDetailStatPokemon (statsPokemon){
     containerDetail.innerHTML = '';
     console.log(statsPokemon);
@@ -113,13 +114,13 @@ function CreateDetailStatPokemon (statsPokemon){
     changeButton('none',true,containerCards)
     changeButton('none',true,containerHeader) 
 }
-
+// Get Data Pokemon Search
 const searchPokemon = async (pokemonName) => {
     const urlAPI = `${API}${URL_POKEMON}${pokemonName}`
     const response = await pokeData(urlAPI);
     return response
 }
-
+// Execute View Detail
 const viewStat = async (pokemonName) =>{
     let statsPokemon = await searchPokemon(pokemonName)
     CreateDetailStatPokemon(statsPokemon)
