@@ -13,21 +13,126 @@ let optionTypeOneSelect;
 let optionTypeTwo = document.getElementById('type-two-pokemon');
 let optionTypeTwoSelect;
 let containerCards = document.getElementById('container-card')
+let containerDetail = document.getElementById('container__detail')
+let containerHeader = document.getElementById('container__header')
 
-function viewStat (pokemonName){
-    searchPokemon(pokemonName)
+function CreateDetailStatPokemon (statsPokemon){
+    containerDetail.innerHTML = '';
+    console.log(statsPokemon);
+    let imgPokemon = `${statsPokemon.sprites.other.dream_world.front_default}`
+    let namePokemon = `${(statsPokemon.name).toUpperCase()}`
+    let typeOnePokemon = `${statsPokemon.types[0].type.name || null}`
+    let typeTwoPokemon = `${statsPokemon?.types[1]?.type?.name || null}`
+    let numberLifePokemon = `${statsPokemon.stats[0].base_stat}`
+    let nameLifePokemon = `${statsPokemon.stats[0].stat.name}`
+
+    let viewStat = `
+    <div class="container__detail--img">
+        <span class="container__detail--img-close">&times;</span>
+        <figure class="container__detail--img-figure">
+            <img src="${imgPokemon}">
+        </figure>
+    </div>
+    
+    <div class="container__detail--content">
+
+        <div class="container__detail--content-name">
+            <p>${namePokemon}</p>
+            <!-- <p>NATURE</p> -->
+            <div class="container__detail--content-name-type">  
+                <div class="type"><img src="../../img/${typeOnePokemon}.png" alt="" srcset=""></div>
+                <div class="type"><img src="../../img/${typeTwoPokemon}.png" alt="" srcset=""></div>
+            </div>
+        </div>
+
+        <div class="container__detail--content-life">
+            <p>LIFE</p>
+            <div>
+                <p class="container__detail--content-life-hp">${numberLifePokemon} ${nameLifePokemon}</p>
+            </div>
+        </div>
+
+        <div class="container__detail--content-stat">
+
+            <div class="container__detail--content-stat-one stat">
+                <p>ATTACK</p>
+                <div>
+                    <p>${statsPokemon.stats[1].base_stat}</p>
+                </div>
+            </div>
+
+            <div class="container__detail--content-stat-two stat">
+                <p>DEFENSE</p>
+                <div>
+                    <p>${statsPokemon.stats[2].base_stat}</p>
+                </div>
+            </div>
+
+            <div class="container__detail--content-stat-three stat">
+                <p>SPECIAL ATTACK</p>
+                <div>
+                    <p>${statsPokemon.stats[3].base_stat}</p>
+                </div>
+            </div>
+
+            <div class="container__detail--content-stat-four stat">
+                <p>SPECIAL DEFENSE</p>
+                <div>
+                    <p>${statsPokemon.stats[4].base_stat}</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="container__detail--content-ofensive">
+            <div>
+                <p>
+                    Offensive
+                </p>
+            </div>
+            <div>
+                <div class="type"><img src="../../img/water.png" alt="" srcset=""></div>
+                <div class="type"><img src="../../img/rock.png" alt="" srcset=""></div>
+                <div class="type"><img src="../../img/normal.png" alt="" srcset=""></div>
+            </div>
+        </div> -->
+
+        <!-- <div class="container__detail--content-defensive">
+            <div>
+                <p>Defensive</p>
+            </div>
+            <div>
+                <div class="type"><img src="../../img/cristal.png" alt="" srcset=""></div>
+                <div class="type"><img src="../../img/dark.png" alt="" srcset=""></div>
+                <div class="type"><img src="../../img/dragon.png" alt="" srcset=""></div>
+            </div>
+        </div> -->
+    </div>
+    `
+    containerDetail.innerHTML = viewStat
+    changeButton('flex',true,containerDetail)
+    changeButton('none',true,containerCards)
+    changeButton('none',true,containerHeader) 
 }
 
 const searchPokemon = async (pokemonName) => {
     const urlAPI = `${API}${URL_POKEMON}${pokemonName}`
     const response = await pokeData(urlAPI);
+    return response
 }
 
-// Active Or Desactive Buttons Filter
-function changeButton (boolChange){
-    optionGenerationPokemon.disabled = boolChange
-    optionTypeOne.disabled = boolChange
-    optionTypeTwo.disabled = boolChange
+const viewStat = async (pokemonName) =>{
+    let statsPokemon = await searchPokemon(pokemonName)
+    CreateDetailStatPokemon(statsPokemon)
+}
+// Active Or Desactive Buttons Filter / Display Change
+function changeButton (toolChange,boolOtherOption = false,divSelect){
+    if (boolOtherOption){
+        divSelect.style.display = toolChange;
+    }else{
+        optionGenerationPokemon.disabled = toolChange
+        optionTypeOne.disabled = toolChange
+        optionTypeTwo.disabled = toolChange
+    }
 }
 // Generate Pokemon Initial Web, Filter Generation, Filter Type One And Filter Type Two
 const generatorPokemon = async () => {

@@ -30,3 +30,6 @@ body{
     font-size: 1.5rem;
 }
 
+.container__detail{
+    display: none;
+}
