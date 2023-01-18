@@ -19,7 +19,6 @@ let containerHeader = document.getElementById('container__header')
 // Create Detail Stat Pokemon Send
 function CreateDetailStatPokemon (statsPokemon){
     containerDetail.innerHTML = '';
-    console.log(statsPokemon);
     let imgPokemon = `${statsPokemon.sprites.other.dream_world.front_default}`
     let namePokemon = `${(statsPokemon.name).toUpperCase()}`
     let typeOnePokemon = `${statsPokemon.types[0].type.name || null}`
