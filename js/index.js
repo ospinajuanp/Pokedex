@@ -13,6 +13,16 @@ let optionTypeOneSelect;
 let optionTypeTwo = document.getElementById('type-two-pokemon');
 let optionTypeTwoSelect;
 let containerCards = document.getElementById('container-card')
+
+function viewStat (pokemonName){
+    searchPokemon(pokemonName)
+}
+
+const searchPokemon = async (pokemonName) => {
+    const urlAPI = `${API}${URL_POKEMON}${pokemonName}`
+    const response = await pokeData(urlAPI);
+}
+
 // Active Or Desactive Buttons Filter
 function changeButton (boolChange){
     optionGenerationPokemon.disabled = boolChange
@@ -125,7 +135,7 @@ const generatorType = async () => {
 // Create Card Pokemon From API
 function createCardPokemon (dataJson){    
     let viewCard = `
-    <div class="card">
+    <div class="card" onclick="viewStat('${dataJson.name}')">
         <div class="card__up">
             <p class="card__up-view">VIEW</p>
             <P class="card__up-name">${dataJson.name.toUpperCase()}</P>
@@ -133,7 +143,7 @@ function createCardPokemon (dataJson){
                 <img class="card__up-img--style" src="${dataJson.sprites.other.dream_world.front_default}" alt="pokemon ${dataJson.name}">
             </figure>
         </div>
-        <div class="card__bottom">
+        <div class="card__bottom" >
             <p class="card__bottom-button">VIEW</p>
         </div>
     </div>
