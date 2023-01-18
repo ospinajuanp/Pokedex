@@ -134,7 +134,7 @@ function createCardPokemon (dataJson){
             </figure>
         </div>
         <div class="card__bottom">
-            <p class="card__bottom-button">PLAY</p>
+            <p class="card__bottom-button">VIEW</p>
         </div>
     </div>
     `
