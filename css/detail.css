@@ -39,7 +39,7 @@ body {
 }
 .container__detail--img {
   width: 100%;
-  height: 200px;
+  max-height: 200px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -48,6 +48,12 @@ body {
   background-color: #E6E2C3;
   box-sizing: border-box;
   border-radius: 20px;
+}
+.container__detail--img-figure{
+  height: 100%;
+}
+.container__detail--img-figure img{
+  height: 100%;
 }
 .container__detail--img span {
   color: #000;
