@@ -12,12 +12,13 @@ let optionTypeOne = document.getElementById('type-one-pokemon');
 let optionTypeOneSelect;
 let optionTypeTwo = document.getElementById('type-two-pokemon');
 let optionTypeTwoSelect;
+let detail = document.getElementById('container--detail')
 let containerCards = document.getElementById('container-card')
 let containerDetail = document.getElementById('container__detail')
 let containerHeader = document.getElementById('container__header')
 
 // Close and Clean Detail Stat
-function CleanDetailStatPokemon (){    
+function CleanDetailStatPokemon (){
     changeButton('none',true,containerDetail)
     changeButton('flex',true,containerCards)
     changeButton('flex',true,containerHeader) 
@@ -122,6 +123,7 @@ function CreateDetailStatPokemon (statsPokemon){
     </div>
     `
     containerDetail.innerHTML = viewStat
+    changeButton('flex',true,detail)
     changeButton('flex',true,containerDetail)
     changeButton('none',true,containerCards)
     changeButton('none',true,containerHeader) 
@@ -345,3 +347,4 @@ optionTypeTwo.addEventListener('change',selectTypeTwoPokemon);
 generatorPokemon()
 // Generate Type Of Pokemon Initial Web
 generatorType()
+changeButton('none',true,detail)
