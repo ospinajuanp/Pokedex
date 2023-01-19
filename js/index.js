@@ -16,9 +16,15 @@ let containerCards = document.getElementById('container-card')
 let containerDetail = document.getElementById('container__detail')
 let containerHeader = document.getElementById('container__header')
 
+// Close and Clean Detail Stat
+function CleanDetailStatPokemon (){    
+    changeButton('none',true,containerDetail)
+    changeButton('flex',true,containerCards)
+    changeButton('flex',true,containerHeader) 
+    containerDetail.innerHTML = '';
+}
 // Create Detail Stat Pokemon Send
 function CreateDetailStatPokemon (statsPokemon){
-    console.log(statsPokemon);
     containerDetail.innerHTML = '';
     let imgPokemon = `${statsPokemon.sprites.other.dream_world.front_default}`
     let namePokemon = `${(statsPokemon.name).toUpperCase()}`
@@ -29,7 +35,7 @@ function CreateDetailStatPokemon (statsPokemon){
 
     let viewStat = `
     <div class="container__detail--img">
-        <span class="container__detail--img-close">&times;</span>
+        <span class="container__detail--img-close" onclick="CleanDetailStatPokemon()">&times;</span>
         <figure class="container__detail--img-figure">
             <img src="${imgPokemon}">
         </figure>
