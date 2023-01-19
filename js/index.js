@@ -18,6 +18,7 @@ let containerHeader = document.getElementById('container__header')
 
 // Create Detail Stat Pokemon Send
 function CreateDetailStatPokemon (statsPokemon){
+    console.log(statsPokemon);
     containerDetail.innerHTML = '';
     let imgPokemon = `${statsPokemon.sprites.other.dream_world.front_default}`
     let namePokemon = `${(statsPokemon.name).toUpperCase()}`
@@ -55,33 +56,39 @@ function CreateDetailStatPokemon (statsPokemon){
         <div class="container__detail--content-stat">
 
             <div class="container__detail--content-stat-one stat">
-                <p>ATTACK</p>
+                <p>${statsPokemon.stats[1].stat.name.toUpperCase()}</p>
                 <div>
                     <p>${statsPokemon.stats[1].base_stat}</p>
                 </div>
             </div>
 
             <div class="container__detail--content-stat-two stat">
-                <p>DEFENSE</p>
+                <p>${statsPokemon.stats[2].stat.name.toUpperCase()}</p>
                 <div>
                     <p>${statsPokemon.stats[2].base_stat}</p>
                 </div>
             </div>
 
+        </div>
+
+        <div class="container__detail--content-stat">
+
             <div class="container__detail--content-stat-three stat">
-                <p>SPECIAL ATTACK</p>
+                <p>${statsPokemon.stats[3].stat.name.toUpperCase()}</p>
                 <div>
                     <p>${statsPokemon.stats[3].base_stat}</p>
                 </div>
             </div>
 
             <div class="container__detail--content-stat-four stat">
-                <p>SPECIAL DEFENSE</p>
+                <p>${statsPokemon.stats[4].stat.name.toUpperCase()}</p>
                 <div>
                     <p>${statsPokemon.stats[4].base_stat}</p>
                 </div>
             </div>
         </div>
+
+        
 
         <!-- <div class="container__detail--content-ofensive">
             <div>
