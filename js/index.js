@@ -48,8 +48,8 @@ function CreateDetailStatPokemon (statsPokemon){
             <p>${namePokemon}</p>
             <!-- <p>NATURE</p> -->
             <div class="container__detail--content-name-type">  
-                <div class="type"><img src="../../img/${typeOnePokemon}.png" alt="" srcset=""></div>
-                <div class="type"><img src="../../img/${typeTwoPokemon}.png" alt="" srcset=""></div>
+                <div class="type"><img src="./img/${typeOnePokemon}.png" alt="" srcset=""></div>
+                <div class="type"><img src="./img/${typeTwoPokemon}.png" alt="" srcset=""></div>
             </div>
         </div>
 
